@@ -1,8 +1,8 @@
 // User Profile Page: Shows profile info, profile picture, and productivity graph. Allows navigation back to dashboard.
 // NOTE: Linter errors below are due to missing type packages or dependencies, not code issues. Ensure all dependencies are installed.
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { User, ArrowLeft, EyeOff, Edit2, Camera, Settings, Shield, Bell, Download, Upload } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { EyeOff, Edit2, Camera, Settings, Shield, Bell, Download, Upload } from 'lucide-react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import Layout from '../../components/Layout';
 
@@ -30,7 +30,6 @@ const productivityData = [
 
 const Profile: React.FC = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const navigate = useNavigate();
   const location = useLocation();
   const [profile] = useState(mockProfile);
   const [showPassword, setShowPassword] = useState(false);

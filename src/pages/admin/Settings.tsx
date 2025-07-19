@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  User, 
-  Bell, 
   Shield, 
   Settings as SettingsIcon,
-  Key, 
   Trash2, 
   Save,
   Users,
   Database,
   Globe,
-  Lock,
   Activity
 } from 'lucide-react';
 
