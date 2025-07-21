@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, MapPin, Building, Users, CheckCircle, Star, ArrowRight, GraduationCap } from 'lucide-react';
+import bgHero from '../assets/istockphoto-1349094945-612x612 (1).jpg';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
@@ -92,11 +93,11 @@ const HomePage: React.FC = () => {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            src={bgHero} 
             alt="Job Board Hero" 
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-100"
           />
-          <div className="absolute inset-0 bg-white/20"></div>
+          <div className="absolute inset-0 bg-white/5"></div>
         </div>
 
 
@@ -121,37 +122,38 @@ const HomePage: React.FC = () => {
                           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               Find Your Dream Job
             </h1>
+            <div className="w-24 h-1 bg-black mx-auto mb-8 rounded-full"></div>
             
-            <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-black mb-12 max-w-3xl mx-auto">
               Discover thousands of opportunities from top companies on LinkedIn, Naukri, and more.
             </p>
             
             {/* Search Bar */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 mb-12 max-w-4xl mx-auto">
+            <div className="bg-[#B57EDC] rounded-2xl shadow-xl border border-gray-200 p-6 mb-12 max-w-4xl mx-auto">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-100" />
                   <input
                     type="text"
                     placeholder="Job title, keywords, or company"
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-700 focus:border-transparent bg-[#CBA0E3] placeholder-purple-900 text-gray-900"
                   />
                 </div>
                 <div className="flex-1 relative">
-                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-100" />
                   <input
                     type="text"
                     placeholder="Location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-700 focus:border-transparent bg-[#CBA0E3] placeholder-purple-900 text-gray-900"
                   />
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="bg-blue-600 text-white px-8 py-4 rounded-xl hover:bg-blue-700 font-semibold text-lg flex items-center justify-center"
+                  className="bg-[#8F5FE8] text-white px-8 py-4 rounded-xl hover:bg-purple-700 font-semibold text-lg flex items-center justify-center shadow-md"
                 >
                   <Search className="h-5 w-5 mr-2" />
                   Search Jobs
