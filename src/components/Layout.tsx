@@ -312,7 +312,10 @@ const Layout: React.FC<LayoutProps> = ({ children, role, viewMode: propViewMode,
                   <User className="h-4 w-4 mr-3" />
                   My Profile
                 </button>
-                <button className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center">
+                <button
+                  onClick={() => { setProfileDropdownOpen(false); navigate(role === 'admin' ? '/admin/settings' : '/user/settings'); }}
+                  className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
+                >
                   <Settings className="h-4 w-4 mr-3" />
                   Settings
                 </button>

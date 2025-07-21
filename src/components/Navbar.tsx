@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { GraduationCap, MoreVertical, User, LogOut, Settings } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import { GraduationCap, MoreVertical, User, LogOut, Settings as SettingsIcon } from 'lucide-react';
 
 interface NavbarProps {
   userType?: 'student' | 'admin';
@@ -10,7 +10,6 @@ const Navbar: React.FC<NavbarProps> = ({ userType = 'student' }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
-  // Close dropdown when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -27,6 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ userType = 'student' }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [dropdownOpen]);
+
   const handleLogout = () => {
     setDropdownOpen(false);
     navigate('/');
@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ userType = 'student' }) => {
         <GraduationCap className="h-8 w-8 text-blue-600" />
         <span className="text-xl font-semibold text-gray-900">Career Companion</span>
       </div>
-      
+
       <div className="relative navbar-dropdown">
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -46,23 +46,25 @@ const Navbar: React.FC<NavbarProps> = ({ userType = 'student' }) => {
         >
           <MoreVertical className="h-5 w-5 text-gray-600" />
         </button>
-        
+
         {dropdownOpen && (
           <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-            <button 
+            <Link
+              to={userType === 'admin' ? '/admin/profile' : '/user/profile'}
               onClick={() => setDropdownOpen(false)}
               className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
             >
               <User className="h-4 w-4 mr-2" />
               Profile
-            </button>
-            <button 
+            </Link>
+            <Link
+              to={userType === 'admin' ? '/admin/settings' : '/user/settings'}
               onClick={() => setDropdownOpen(false)}
               className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
             >
-              <Settings className="h-4 w-4 mr-2" />
+              <SettingsIcon className="h-4 w-4 mr-2" />
               Settings
-            </button>
+            </Link>
             <hr className="my-1" />
             <button
               onClick={handleLogout}
