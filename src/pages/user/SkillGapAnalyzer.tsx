@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Layout from '../../components/Layout';
 import { Upload, FileText, Linkedin, CheckCircle, XCircle, TrendingUp, BookOpen } from 'lucide-react';
 
@@ -7,6 +7,8 @@ const SkillGapAnalyzer: React.FC = () => {
   const [analysisComplete, setAnalysisComplete] = useState(false);
   const [uploadMethod, setUploadMethod] = useState<'resume' | 'linkedin' | 'manual'>('resume');
   const [selectedJob, setSelectedJob] = useState<null | { title: string; company: string; match: string }>(null);
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleAnalyze = () => {
     setAnalysisComplete(true);
@@ -234,7 +236,10 @@ const SkillGapAnalyzer: React.FC = () => {
               
               <div className="space-y-4 mb-8">
                 <button
-                  onClick={() => setUploadMethod('resume')}
+                  onClick={() => {
+                    setUploadMethod('resume');
+                    fileInputRef.current?.click();
+                  }}
                   className={`w-full p-4 rounded-lg border-2 ${
                     uploadMethod === 'resume' 
                       ? 'border-blue-500 bg-blue-50' 
@@ -249,6 +254,17 @@ const SkillGapAnalyzer: React.FC = () => {
                     </div>
                   </div>
                 </button>
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  ref={fileInputRef}
+                  style={{ display: 'none' }}
+                  onChange={e => {
+                    if (e.target.files && e.target.files[0]) {
+                      setResumeFile(e.target.files[0]);
+                    }
+                  }}
+                />
 
                 <button
                   onClick={() => setUploadMethod('linkedin')}
