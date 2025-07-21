@@ -129,31 +129,31 @@ const HomePage: React.FC = () => {
             </p>
             
             {/* Search Bar */}
-            <div className="bg-[#B57EDC] rounded-2xl shadow-xl border border-gray-200 p-6 mb-12 max-w-4xl mx-auto">
+            <div className="bg-[#E0F2FE] rounded-2xl shadow-xl border border-gray-200 p-6 mb-12 max-w-4xl mx-auto">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="flex-1 relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-100" />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-400" />
                   <input
                     type="text"
                     placeholder="Job title, keywords, or company"
                     value={jobTitle}
                     onChange={(e) => setJobTitle(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-700 focus:border-transparent bg-[#CBA0E3] placeholder-purple-900 text-gray-900"
+                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-transparent bg-[#F0F9FF] placeholder-blue-400 text-gray-900"
                   />
                 </div>
                 <div className="flex-1 relative">
-                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-100" />
+                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-400" />
                   <input
                     type="text"
                     placeholder="Location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-700 focus:border-transparent bg-[#CBA0E3] placeholder-purple-900 text-gray-900"
+                    className="w-full pl-12 pr-4 py-4 text-lg border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-transparent bg-[#F0F9FF] placeholder-blue-400 text-gray-900"
                   />
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="bg-[#8F5FE8] text-white px-8 py-4 rounded-xl hover:bg-purple-700 font-semibold text-lg flex items-center justify-center shadow-md"
+                  className="bg-blue-500 text-white px-8 py-4 rounded-xl hover:bg-blue-700 font-semibold text-lg flex items-center justify-center shadow-md"
                 >
                   <Search className="h-5 w-5 mr-2" />
                   Search Jobs
