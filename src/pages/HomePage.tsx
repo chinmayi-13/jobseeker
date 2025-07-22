@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, MapPin, Building, Users, CheckCircle, Star, ArrowRight, GraduationCap } from 'lucide-react';
+import { Search, MapPin, Building, Users, CheckCircle, Star, ArrowRight, GraduationCap, ArrowDown } from 'lucide-react';
 import bgHero from '../assets/istockphoto-1349094945-612x612 (1).jpg';
 
 const HomePage: React.FC = () => {
@@ -67,7 +67,9 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen gradient-bg">
+    <div className="min-h-screen gradient-bg relative">
+      {/* Thin White Overlay */}
+      <div className="absolute inset-0 bg-white/10 z-0 pointer-events-none"></div>
       {/* Navigation */}
       <nav
         className={`fixed w-full top-0 left-0 z-30 transition-all duration-300 px-6 py-4
@@ -103,7 +105,7 @@ const HomePage: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative min-h-screen flex items-center">
+      <div className="relative min-h-screen flex items-center z-10">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -167,6 +169,10 @@ const HomePage: React.FC = () => {
                 </div>
               ))}
             </div>
+            {/* Animated Down Arrow */}
+            <div className="flex justify-center mt-12">
+              <ArrowDown className="h-10 w-10 text-blue-500 custom-bounce" />
+            </div>
           </div>
         </div>
       </div>
@@ -174,7 +180,7 @@ const HomePage: React.FC = () => {
       <div className="h-20"></div>
 
       {/* Main White Layout */}
-      <div className="bg-white">
+      <div className="bg-white z-10 relative">
         {/* Featured Jobs Section */}
         <div className="py-20 gradient-bg">
           <div className="max-w-7xl mx-auto px-6">

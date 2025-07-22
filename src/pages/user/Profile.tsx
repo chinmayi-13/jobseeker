@@ -67,9 +67,6 @@ const Profile: React.FC = () => {
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-gray-900">Basic Information</h2>
-                <button className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                  Edit Profile
-                </button>
               </div>
               
               <div className="space-y-4">
@@ -78,14 +75,12 @@ const Profile: React.FC = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                     <div className="flex items-center bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
                       <span className="flex-1 text-gray-900">{profile.name}</span>
-                      <Edit2 className="h-4 w-4 text-gray-400 ml-2 cursor-pointer hover:text-gray-600" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <div className="flex items-center bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
                       <span className="flex-1 text-gray-900">{profile.email}</span>
-                      <Edit2 className="h-4 w-4 text-gray-400 ml-2 cursor-pointer hover:text-gray-600" />
                     </div>
                   </div>
                 </div>
@@ -95,14 +90,12 @@ const Profile: React.FC = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
                     <div className="flex items-center bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
                       <span className="flex-1 text-gray-900">{profile.role}</span>
-                      <Edit2 className="h-4 w-4 text-gray-400 ml-2 cursor-pointer hover:text-gray-600" />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
                     <div className="flex items-center bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
                       <span className="flex-1 text-gray-900">{profile.location}</span>
-                      <Edit2 className="h-4 w-4 text-gray-400 ml-2 cursor-pointer hover:text-gray-600" />
                     </div>
                   </div>
                 </div>
@@ -111,15 +104,8 @@ const Profile: React.FC = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
                   <div className="flex items-center bg-gray-50 rounded-xl px-4 py-3 border border-gray-200">
                     <span className="flex-1 text-gray-900">
-                      {showPassword ? profile.password : '••••••••'}
+                      {'••••••••'}
                     </span>
-                    <button 
-                      onClick={() => setShowPassword((v) => !v)} 
-                      className="ml-2 p-1 rounded hover:bg-gray-200"
-                    >
-                      <EyeOff className="h-4 w-4 text-gray-400" />
-                    </button>
-                    <Edit2 className="h-4 w-4 text-gray-400 ml-2 cursor-pointer hover:text-gray-600" />
                   </div>
                 </div>
 
@@ -318,25 +304,6 @@ const Profile: React.FC = () => {
                     {skill}
                   </span>
                 ))}
-              </div>
-            </div>
-
-            {/* Account Actions */}
-            <div className="card">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Account</h3>
-              <div className="space-y-2">
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg flex items-center">
-                  <Settings className="h-4 w-4 mr-2" />
-                  Settings
-                </button>
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg flex items-center">
-                  <Bell className="h-4 w-4 mr-2" />
-                  Notifications
-                </button>
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 rounded-lg flex items-center">
-                  <Shield className="h-4 w-4 mr-2" />
-                  Privacy
-                </button>
               </div>
             </div>
           </div>

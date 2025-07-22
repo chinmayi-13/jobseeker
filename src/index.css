@@ -251,4 +251,17 @@ button, div, span, a, input, textarea, select {
   overflow: hidden;
 }
 
+/* Custom bounce animation for homepage arrow */
+@keyframes custom-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+.custom-bounce {
+  animation: custom-bounce 1.2s infinite !important;
+}
+
 
