@@ -8,6 +8,24 @@ import './index.css';
 const disableTransitions = () => {
   const style = document.createElement('style');
   style.textContent = `
+    /* Toggle Switch Animations */
+    @keyframes toggleOn {
+      from { transform: translateX(2px); }
+      to { transform: translateX(22px); }
+    }
+    
+    @keyframes toggleOff {
+      from { transform: translateX(22px); }
+      to { transform: translateX(2px); }
+    }
+    
+    .toggle-switch.toggling-on .toggle-slider {
+      animation: toggleOn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+    }
+    
+    .toggle-switch.toggling-off .toggle-slider {
+      animation: toggleOff 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+    }
     /* NUCLEAR OPTION - DISABLE ALL TRANSITIONS */
     *, *::before, *::after {
       transition: none !important;
@@ -75,14 +93,49 @@ const disableTransitions = () => {
       transition-delay: 0s !important;
     }
     
-    /* Disable all button transitions */
-    button,
-    button:hover,
-    button:focus,
-    button:active {
+    /* Disable all button transitions except toggle switches */
+    button:not([class*="toggle"]):not([class*="switch"]),
+    button:not([class*="toggle"]):not([class*="switch"]):hover,
+    button:not([class*="toggle"]):not([class*="switch"]):focus,
+    button:not([class*="toggle"]):not([class*="switch"]):active {
       transition: none !important;
       animation: none !important;
       transform: none !important;
+    }
+    
+    /* Allow toggle switch transitions - OVERRIDE ALL DISABLED TRANSITIONS */
+    .toggle-switch,
+    .toggle-switch *,
+    .toggle-switch span,
+    .toggle-slider {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      animation: none !important;
+      transform: none !important;
+    }
+    
+    /* Force toggle slider transforms to work */
+    .toggle-slider {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      transform: translateX(0) !important;
+    }
+    
+    /* Ensure transform overrides work */
+    .toggle-switch .toggle-slider[style*="translateX(22px)"] {
+      transform: translateX(22px) !important;
+    }
+    
+    .toggle-switch .toggle-slider[style*="translateX(2px)"] {
+      transform: translateX(2px) !important;
+    }
+    
+    /* Add hover effect for better interaction feedback */
+    .toggle-switch:hover .toggle-slider {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Override any conflicting styles */
+    .toggle-switch * {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
     /* Disable all link transitions */
