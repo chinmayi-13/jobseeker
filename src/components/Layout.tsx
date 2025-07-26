@@ -24,6 +24,7 @@ import {
   List
 } from 'lucide-react';
 import JobFilters from './JobFilters';
+import Sidebar from './Sidebar';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -221,205 +222,134 @@ const Layout: React.FC<LayoutProps> = ({ children, role, viewMode: propViewMode,
   const breadcrumbs = generateBreadcrumbs();
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-col">
-      {/* Top Navbar - Fixed */}
-      <nav className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0">
-        <div className="flex items-center space-x-4">
-          {/* Hamburger Menu Button */}
-                      <button
+    <div className="h-screen bg-gray-50 flex flex-row">
+      {/* Sidebar */}
+      <div className={`sidebar-container bg-white border-r border-gray-200 z-40 w-72 lg:relative lg:z-auto ${sidebarOpen ? 'block' : 'hidden'} lg:block fixed lg:static inset-y-0 left-0 top-0 h-full`}>
+        <Sidebar />
+      </div>
+      {/* Overlay for mobile */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-30 z-30 lg:hidden" onClick={() => setSidebarOpen(false)} />
+      )}
+      {/* Main Content Area (navbar + page content) */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top Navbar - Fixed */}
+        <nav className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0">
+          <div className="flex items-center space-x-4">
+            {/* Hamburger Menu Button - now to the left of branding */}
+            <button
               onClick={toggleSidebar}
-              className="menu-button p-2 rounded-lg hover:bg-gray-100"
+              className="menu-button p-2 rounded-lg hover:bg-gray-100 lg:hidden mr-2"
               aria-label="Toggle sidebar"
             >
-            <Menu className="h-5 w-5 text-gray-600" />
-          </button>
-          
-          {/* Career Companion Branding */}
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-              <GraduationCap className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <h2 className="text-lg font-semibold text-gray-900">Career Companion</h2>
-              <p className="text-sm text-gray-500">{role === 'student' ? 'Student Portal' : 'Admin Portal'}</p>
+              <Menu className="h-5 w-5 text-gray-600" />
+            </button>
+            {/* Career Companion Branding */}
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                <GraduationCap className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900">Career Companion</h2>
+                <p className="text-sm text-gray-500">{role === 'student' ? 'Student Portal' : 'Admin Portal'}</p>
+              </div>
             </div>
           </div>
-          
-
-        </div>
-        
-        <div className="flex items-center gap-3">
-
-
-
-          {/* Notification Bell */}
-          <div className="relative">
-            <button
-              onClick={() => setNotificationOpen((v) => !v)}
-              className="p-2 rounded-lg hover:bg-gray-100 relative"
-              aria-label="Notifications"
-            >
-              <Bell className="h-5 w-5 text-gray-600" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow" style={{ minWidth: '20px', textAlign: 'center' }}>2</span>
-            </button>
-            {notificationOpen && (
-              <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
-                <div className="px-4 py-3 text-gray-900 font-semibold border-b border-gray-100">Notifications</div>
-                <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
-                  <div className="font-medium">Application Viewed</div>
-                  <div className="text-gray-500">Your application for Frontend Developer was viewed</div>
+          <div className="flex items-center gap-3">
+            {/* Notification Bell */}
+            <div className="relative">
+              <button
+                onClick={() => setNotificationOpen((v) => !v)}
+                className="p-2 rounded-lg hover:bg-gray-100 relative"
+                aria-label="Notifications"
+              >
+                <Bell className="h-5 w-5 text-gray-600" />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow" style={{ minWidth: '20px', textAlign: 'center' }}>2</span>
+              </button>
+              {notificationOpen && (
+                <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
+                  <div className="px-4 py-3 text-gray-900 font-semibold border-b border-gray-100">Notifications</div>
+                  <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                    <div className="font-medium">Application Viewed</div>
+                    <div className="text-gray-500">Your application for Frontend Developer was viewed</div>
+                  </div>
+                  <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                    <div className="font-medium">New Job Posted</div>
+                    <div className="text-gray-500">React Developer position available</div>
+                  </div>
+                  <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
+                    <div className="font-medium">New Messages</div>
+                    <div className="text-gray-500">You have 2 new messages</div>
+                  </div>
+                  <div className="px-4 py-2 text-xs text-blue-600 hover:bg-blue-50 cursor-pointer border-t border-gray-100">
+                    View all notifications
+                  </div>
                 </div>
-                <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
-                  <div className="font-medium">New Job Posted</div>
-                  <div className="text-gray-500">React Developer position available</div>
+              )}
+            </div>
+            {/* Profile Dropdown */}
+            <div className="relative profile-dropdown">
+              <button
+                onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100"
+                aria-label="Profile menu"
+              >
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-semibold">C</span>
                 </div>
-                <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
-                  <div className="font-medium">New Messages</div>
-                  <div className="text-gray-500">You have 2 new messages</div>
-                </div>
-                <div className="px-4 py-2 text-xs text-blue-600 hover:bg-blue-50 cursor-pointer border-t border-gray-100">
-                  View all notifications
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Profile Dropdown */}
-          <div className="relative profile-dropdown">
-            <button
-              onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100"
-              aria-label="Profile menu"
-            >
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-semibold">C</span>
-              </div>
-              <div className="hidden md:block text-left">
-                <div className="text-sm font-medium text-gray-900">Chinmayi</div>
-                <div className="text-xs text-gray-500">{role === 'student' ? 'Student' : 'Admin'}</div>
-              </div>
-            </button>
-            {profileDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
-                <div className="px-4 py-3 border-b border-gray-100">
+                <div className="hidden md:block text-left">
                   <div className="text-sm font-medium text-gray-900">Chinmayi</div>
-                  <div className="text-xs text-gray-500">chinmayi@example.com</div>
+                  <div className="text-xs text-gray-500">{role === 'student' ? 'Student' : 'Admin'}</div>
                 </div>
-                <button
-                  onClick={() => { setProfileDropdownOpen(false); navigate(role === 'admin' ? '/admin/profile' : '/user/profile'); }}
-                  className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
-                >
-                  <User className="h-4 w-4 mr-3" />
-                  My Profile
-                </button>
-                <button
-                  onClick={() => { setProfileDropdownOpen(false); navigate(role === 'admin' ? '/admin/settings' : '/user/settings'); }}
-                  className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
-                >
-                  <Settings className="h-4 w-4 mr-3" />
-                  Settings
-                </button>
-                <div className="border-t border-gray-100 mt-2 pt-2">
+              </button>
+              {profileDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <div className="text-sm font-medium text-gray-900">Chinmayi</div>
+                    <div className="text-xs text-gray-500">chinmayi@example.com</div>
+                  </div>
+                  <button
+                    onClick={() => { setProfileDropdownOpen(false); navigate(role === 'admin' ? '/admin/profile' : '/user/profile'); }}
+                    className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
+                  >
+                    <User className="h-4 w-4 mr-3" />
+                    Profile
+                  </button>
                   <button
                     onClick={handleLogout}
-                    className="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50 flex items-center"
+                    className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
                   >
                     <LogOut className="h-4 w-4 mr-3" />
                     Logout
                   </button>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      </nav>
-
-      {/* Main Content Area - Below Fixed Navbar */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Sidebar */}
-        <div className={`sidebar-container bg-white border-r border-gray-200 z-40 ${
-          expandedSidebar 
-            ? 'w-80' // Full width when expanded
-            : 'w-16'   // Compact width with only icons
-        } lg:relative lg:z-auto ${
-          window.innerWidth < 1024 ? 'fixed inset-y-0 left-0 top-0' : ''
-        }`}>
-          <div className={`${expandedSidebar ? 'w-80' : 'w-16'} h-full overflow-hidden`}>
-            {/* Navigation Menu */}
-            <nav className={`${expandedSidebar ? 'px-4 py-6' : 'px-2 py-6'}`}>
-              <div className="space-y-2">
-                {menuItems.map((item) => {
-                  const Icon = item.icon;
-                  const isActive = location.pathname === item.path;
-                  
-                  return (
-                    <button
-                      key={item.id}
-                      onClick={() => handleMenuClick(item.path)}
-                      className={`w-full flex items-center ${expandedSidebar ? 'space-x-3 px-4 py-3' : 'justify-center p-3'} rounded-lg ${
-                        isActive 
-                          ? 'bg-blue-50 text-blue-700 border border-blue-200' 
-                          : 'text-gray-700 hover:bg-gray-50'
-                      }`}
-                      title={expandedSidebar ? undefined : item.label}
-                      style={{ 
-                        transition: 'none !important', 
-                        animation: 'none !important', 
-                        transform: 'none !important',
-                        transitionProperty: 'none !important',
-                        transitionDuration: '0s !important',
-                        transitionTimingFunction: 'none !important',
-                        transitionDelay: '0s !important'
-                      }}
-                    >
-                      <Icon className={`h-5 w-5 flex-shrink-0 ${isActive ? 'text-blue-600' : 'text-gray-400'}`} />
-                      <span className={`font-medium ${expandedSidebar ? 'block' : 'hidden'}`}>{item.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Bottom section */}
-              {/* Removed Settings and Logout buttons from sidebar bottom section */}
+        </nav>
+        {/* Breadcrumbs */}
+        {breadcrumbs.length > 1 && (
+          <div className="bg-white border-b border-gray-200 px-6 py-3 flex-shrink-0">
+            <nav className="flex items-center space-x-2 text-sm">
+              {breadcrumbs.map((breadcrumb, index) => (
+                <div key={index} className="flex items-center">
+                  {index > 0 && <ChevronRight className="h-4 w-4 text-gray-400 mx-2" />}
+                  <button
+                    onClick={() => navigate(breadcrumb.path)}
+                    className={`hover:text-blue-600 ${
+                      index === breadcrumbs.length - 1 ? 'text-gray-900 font-medium' : 'text-gray-500'
+                    }`}
+                  >
+                    {breadcrumb.label}
+                  </button>
+                </div>
+              ))}
             </nav>
           </div>
-        </div>
-
-        {/* Overlay for mobile */}
-        {sidebarOpen && window.innerWidth < 1024 && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
         )}
-
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Breadcrumbs */}
-          {breadcrumbs.length > 1 && (
-            <div className="bg-white border-b border-gray-200 px-6 py-3 flex-shrink-0">
-              <nav className="flex items-center space-x-2 text-sm">
-                {breadcrumbs.map((breadcrumb, index) => (
-                  <div key={index} className="flex items-center">
-                    {index > 0 && <ChevronRight className="h-4 w-4 text-gray-400 mx-2" />}
-                    <button
-                      onClick={() => navigate(breadcrumb.path)}
-                      className={`hover:text-blue-600 ${
-                        index === breadcrumbs.length - 1 ? 'text-gray-900 font-medium' : 'text-gray-500'
-                      }`}
-                    >
-                      {breadcrumb.label}
-                    </button>
-                  </div>
-                ))}
-              </nav>
-            </div>
-          )}
-
-          {/* Page Content */}
-          <div className="flex-1 overflow-auto">
-            {children}
-          </div>
+        {/* Page Content */}
+        <div className="flex-1 overflow-auto min-w-0">
+          {children}
         </div>
       </div>
 
