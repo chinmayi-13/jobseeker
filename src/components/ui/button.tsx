@@ -7,13 +7,15 @@ export const Button = ({
   className = "",
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "default" | "outline";
+  variant?: "default" | "outline" | "ghost";
   size?: "sm" | "md" | "lg";
 }) => {
   let base = "inline-flex items-center justify-center font-medium rounded transition-colors focus:outline-none";
   let style =
     variant === "outline"
       ? "border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
+      : variant === "ghost"
+      ? "text-gray-600 hover:bg-gray-100"
       : "bg-blue-600 text-white hover:bg-blue-700";
   let padding =
     size === "sm"

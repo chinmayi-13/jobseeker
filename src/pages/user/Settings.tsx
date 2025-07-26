@@ -106,23 +106,23 @@ const Settings: React.FC = () => {
         <div className="bg-white rounded-none shadow-sm border border-gray-200 mx-0 px-8"> {/* Full width, edge-to-edge */}
           {/* Tabs as Horizontal Bar */}
           <div className="flex space-x-8 px-6 py-4 border-b border-gray-200">
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center space-x-2 py-2 px-4 text-sm font-medium rounded-lg transition-colors ${
-                    activeTab === tab.id
+                      activeTab === tab.id
                       ? 'text-blue-600 bg-blue-50 border border-blue-200'
                       : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span>{tab.label}</span>
-                </button>
-              );
-            })}
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
           </div>
           {/* Tab Content */}
           <div className="p-6">
@@ -132,63 +132,63 @@ const Settings: React.FC = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h3>
                   <div className="flex items-center space-x-6 mb-6">
-                    <div className="relative">
-                      <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xl font-semibold">C</span>
-                      </div>
-                      <button className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-md border border-gray-200">
-                        <Camera className="h-4 w-4 text-gray-600" />
-                      </button>
+                  <div className="relative">
+                    <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                      <span className="text-white text-xl font-semibold">C</span>
                     </div>
-                    <div>
+                    <button className="absolute -bottom-1 -right-1 bg-white rounded-full p-1 shadow-md border border-gray-200">
+                      <Camera className="h-4 w-4 text-gray-600" />
+                    </button>
+                  </div>
+                  <div>
                       <h4 className="text-md font-medium text-gray-900">Profile Picture</h4>
                       <p className="text-sm text-gray-500">Upload a new profile picture</p>
-                    </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
                       <div className="relative">
-                        <input
-                          type="text"
-                          value={profileData.firstName}
-                          onChange={(e) => setProfileData({ ...profileData, firstName: e.target.value })}
+                    <input
+                      type="text"
+                      value={profileData.firstName}
+                      onChange={(e) => setProfileData({ ...profileData, firstName: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10"
-                        />
+                    />
                         <Edit2 className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600" />
                       </div>
-                    </div>
-                    <div>
+                  </div>
+                  <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
                       <div className="relative">
-                        <input
-                          type="text"
-                          value={profileData.lastName}
-                          onChange={(e) => setProfileData({ ...profileData, lastName: e.target.value })}
+                    <input
+                      type="text"
+                      value={profileData.lastName}
+                      onChange={(e) => setProfileData({ ...profileData, lastName: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10"
-                        />
+                    />
                         <Edit2 className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600" />
                       </div>
-                    </div>
-                    <div>
+                  </div>
+                  <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                       <div className="relative">
-                        <input
-                          type="email"
-                          value={profileData.email}
-                          onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
+                    <input
+                      type="email"
+                      value={profileData.email}
+                      onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10"
-                        />
+                    />
                         <Edit2 className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600" />
                       </div>
-                    </div>
-                    <div>
+                  </div>
+                  <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
                       <div className="relative">
-                        <input
-                          type="tel"
-                          value={profileData.phone}
-                          onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
+                    <input
+                      type="tel"
+                      value={profileData.phone}
+                      onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10"
                         />
                         <Edit2 className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600" />
@@ -367,7 +367,7 @@ const Settings: React.FC = () => {
                         </select>
                         <Globe className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                       </div>
-                    </div>
+                      </div>
                   </div>
                 </div>
 
@@ -390,8 +390,8 @@ const Settings: React.FC = () => {
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">University</label>
                       <div className="relative">
-                        <input
-                          type="text"
+                    <input
+                      type="text"
                           value={profileData.university}
                           onChange={(e) => setProfileData({ ...profileData, university: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10"
@@ -499,8 +499,8 @@ const Settings: React.FC = () => {
                         />
                         <Link className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                       </div>
-                    </div>
-                    <div className="md:col-span-2">
+                  </div>
+                  <div className="md:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-1">Portfolio URL</label>
                       <div className="relative">
                         <input
@@ -827,11 +827,11 @@ const Settings: React.FC = () => {
               <Save className="w-4 h-4" />
               Save Changes
             </button>
-          </div>
         </div>
       </div>
+    </div>
     </Layout>
   );
 };
 
-export default Settings;
+export default Settings; 
