@@ -243,10 +243,10 @@ const Settings: React.FC = () => {
                           onChange={(e) => setProfileData({ ...profileData, location: e.target.value })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-10"
                         />
-                        <MapPin className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Edit2 className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 cursor-pointer hover:text-gray-600" />
                       </div>
                     </div>
-                    <div className="md:col-span-2">
+                    <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
                       <div className="relative">
                         <textarea
@@ -819,7 +819,7 @@ const Settings: React.FC = () => {
           </div>
 
           {/* Save Button */}
-          <div className="border-t border-gray-100 bg-gray-50 px-6 py-4 flex justify-end"> {/* Remove rounded-b-xl */}
+          <div className="border-t border-gray-100 bg-gray-50 px-6 py-4 rounded-b-xl flex justify-end">
             <button
               onClick={handleSave}
               className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
@@ -834,4 +834,4 @@ const Settings: React.FC = () => {
   );
 };
 
-export default Settings; 
+export default Settings;

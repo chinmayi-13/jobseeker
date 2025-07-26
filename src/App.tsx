@@ -14,6 +14,9 @@ import UserManagement from './pages/admin/UserManagement';
 import RoleLibrary from './pages/admin/RoleLibrary';
 import Analytics from './pages/admin/Analytics';
 import AdminSettings from './pages/admin/Settings';
+import AnalysisPage from './pages/user/AnalysisPage';
+import CertificationsPage from './pages/user/CertificationsPage';
+import ProgressPage from './pages/user/ProgressPage';
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
         <Route path="/user/peer-compare" element={<PeerComparison />} />
         <Route path="/user/profile" element={<Profile />} />
         <Route path="/user/settings" element={<Settings />} /> {/* ✅ Route to Settings page */}
+        <Route path="/analysis" element={<AnalysisPage />} />
+        <Route path="/certifications" element={<CertificationsPage />} />
+        <Route path="/progress" element={<ProgressPage />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/users" element={<UserManagement />} />
         <Route path="/admin/roles" element={<RoleLibrary />} />
@@ -39,5 +45,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
