@@ -187,7 +187,7 @@ const Settings: React.FC = () => {
                   </select>
                 </div>
 
-                <div>
+          <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Max Login Attempts</label>
                   <select
                     value={securitySettings.maxLoginAttempts}
@@ -198,9 +198,9 @@ const Settings: React.FC = () => {
                     <option value="5">5 attempts</option>
                     <option value="10">10 attempts</option>
                   </select>
-                </div>
+          </div>
 
-                <div>
+          <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Password Policy</label>
                   <select
                     value={securitySettings.passwordPolicy}
@@ -285,9 +285,9 @@ const Settings: React.FC = () => {
                       userManagement.allowProfileEditing ? 'translate-x-6' : 'translate-x-1'
                     }`} />
                   </button>
-                </div>
+          </div>
 
-                <div>
+          <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">User Data Retention (days)</label>
                   <select
                     value={userManagement.userDataRetention}
