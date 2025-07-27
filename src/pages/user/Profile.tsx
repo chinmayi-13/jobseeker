@@ -40,8 +40,8 @@ const Profile: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">My Profile</h1>
-          <p className="text-gray-600">Manage your professional profile and information</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">My Profile</h1>
+          <p className="text-base text-gray-600">Manage your professional profile and information</p>
         </div>
 
         {/* Main Profile Card */}
@@ -61,7 +61,7 @@ const Profile: React.FC = () => {
             <div className="flex-1">
               <div className="mb-4">
                 <h2 className="text-2xl font-bold text-gray-900 mb-1">{profile.name}</h2>
-                <p className="text-gray-600 mb-2">{profile.role}</p>
+                <p className="text-base text-gray-600 mb-2">{profile.role}</p>
                 <div className="flex items-center space-x-4 text-sm text-gray-600">
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-1" />
@@ -120,18 +120,18 @@ const Profile: React.FC = () => {
           <div className="p-6">
             {activeTab === 'overview' && (
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Professional Summary</h3>
-                <p className="text-gray-700 leading-relaxed">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Professional Summary</h3>
+                <p className="text-base text-gray-700 leading-relaxed">
                   {profile.bio}
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="text-md font-semibold text-gray-900 mb-3">Experience</h4>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Experience</h4>
                     <p className="text-gray-600">{profile.experience}</p>
                   </div>
                   <div>
-                    <h4 className="text-md font-semibold text-gray-900 mb-3">Location</h4>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Location</h4>
                     <p className="text-gray-600">{profile.location}</p>
                   </div>
                 </div>
@@ -140,12 +140,12 @@ const Profile: React.FC = () => {
                 <div className="border-t border-gray-200 pt-6">
                   <div className="flex items-center mb-4">
                     <User className="h-5 w-5 text-gray-600 mr-2" />
-                    <h3 className="text-lg font-semibold text-gray-900">Contact Information</h3>
+                    <h3 className="text-xl font-semibold text-gray-900">Contact Information</h3>
                   </div>
                   
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                      <label className="block text-sm font-medium mb-2">Email</label>
                       <div className="relative">
                         <input
                           type="email"
@@ -158,7 +158,7 @@ const Profile: React.FC = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                      <label className="block text-sm font-medium mb-2">Phone</label>
                       <div className="relative">
                         <input
                           type="tel"
@@ -176,10 +176,10 @@ const Profile: React.FC = () => {
 
             {activeTab === 'experience' && (
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Work Experience</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Work Experience</h3>
                 <div className="space-y-4">
                   <div className="border-l-4 border-blue-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">{profile.role}</h4>
+                    <h4 className="text-lg font-semibold text-gray-900">{profile.role}</h4>
                     <p className="text-blue-600">{profile.company}</p>
                     <p className="text-gray-600 text-sm">2020 - Present</p>
                     <p className="text-gray-700 mt-2">
@@ -192,10 +192,10 @@ const Profile: React.FC = () => {
 
             {activeTab === 'education' && (
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Education</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Education</h3>
                 <div className="space-y-4">
                   <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Bachelor of Technology in Computer Science</h4>
+                    <h4 className="text-lg font-semibold text-gray-900">Bachelor of Technology in Computer Science</h4>
                     <p className="text-green-600">Stanford University</p>
                     <p className="text-gray-600 text-sm">2016 - 2020</p>
                   </div>
@@ -205,7 +205,7 @@ const Profile: React.FC = () => {
 
             {activeTab === 'skills' && (
               <div className="space-y-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Technical Skills</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Technical Skills</h3>
                 <div className="flex flex-wrap gap-2">
                   {profile.skills.map((skill, index) => (
                     <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">

@@ -35,13 +35,16 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, role, viewMode: propViewMode, onViewModeChange }) => {
   const location = useLocation();
-  const [sidebarOpen, setSidebarOpen] = useState(false); // Start with sidebar collapsed, only expand via hamburger menu
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar is closed by default
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [filterModalOpen, setFilterModalOpen] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState<any>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>(propViewMode || 'grid');
   const navigate = useNavigate();
+
+  // Add state and handler for sidebar toggle
+  const handleSidebarToggle = () => setSidebarOpen((open) => !open);
 
   // Student menu items
   const studentMenuItems = [
@@ -222,9 +225,9 @@ const Layout: React.FC<LayoutProps> = ({ children, role, viewMode: propViewMode,
   const breadcrumbs = generateBreadcrumbs();
 
   return (
-    <div className="h-screen bg-gray-50 flex flex-row">
+    <div className="h-screen bg-background flex flex-row">
       {/* Sidebar */}
-      <div className={`sidebar-container bg-white border-r border-gray-200 z-40 w-72 lg:relative lg:z-auto ${sidebarOpen ? 'block' : 'hidden'} lg:block fixed lg:static inset-y-0 left-0 top-0 h-full`}>
+      <div className={`sidebar-container z-40 w-72 ${sidebarOpen ? 'block' : 'hidden'} h-full bg-white fixed`}>
         <Sidebar />
       </div>
       {/* Overlay for mobile */}
@@ -232,98 +235,36 @@ const Layout: React.FC<LayoutProps> = ({ children, role, viewMode: propViewMode,
         <div className="fixed inset-0 bg-black bg-opacity-30 z-30 lg:hidden" onClick={() => setSidebarOpen(false)} />
       )}
       {/* Main Content Area (navbar + page content) */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${sidebarOpen ? 'ml-72' : ''} lg:ml-0`}>
         {/* Top Navbar - Fixed */}
         <nav className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0">
-          <div className="flex items-center space-x-4">
-            {/* Hamburger Menu Button - now to the left of branding */}
-            <button
-              onClick={toggleSidebar}
-              className="menu-button p-2 rounded-lg hover:bg-gray-100 lg:hidden mr-2"
-              aria-label="Toggle sidebar"
-            >
-              <Menu className="h-5 w-5 text-gray-600" />
+          <div className="flex items-center gap-6 w-full">
+            {/* Menu Icon and App Name */}
+            <button className="menu-button p-2 rounded-lg hover:bg-gray-100 mr-2" aria-label="Toggle sidebar" onClick={handleSidebarToggle}>
+              <Menu className="h-6 w-6 text-gray-600" />
             </button>
-            {/* Career Companion Branding */}
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                <GraduationCap className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900">Career Companion</h2>
-                <p className="text-sm text-gray-500">{role === 'student' ? 'Student Portal' : 'Admin Portal'}</p>
+            <span className="text-xl font-extrabold text-blue-700 tracking-tight whitespace-nowrap">Career Companion</span>
+            {/* Search Bar */}
+            <div className="flex-1 flex items-center ml-6">
+              <div className="relative w-full max-w-xl">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-6 w-6 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search jobs, companies..."
+                  className="pl-12 pr-4 py-3 rounded-2xl bg-gray-50 border-none focus:ring-2 focus:ring-blue-500 focus:outline-none w-full text-lg text-gray-700 placeholder-gray-400 shadow-sm"
+                />
               </div>
             </div>
-          </div>
-          <div className="flex items-center gap-3">
-            {/* Notification Bell */}
-            <div className="relative">
-              <button
-                onClick={() => setNotificationOpen((v) => !v)}
-                className="p-2 rounded-lg hover:bg-gray-100 relative"
-                aria-label="Notifications"
-              >
-                <Bell className="h-5 w-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 shadow" style={{ minWidth: '20px', textAlign: 'center' }}>2</span>
+            {/* User Actions */}
+            <div className="flex items-center gap-4 ml-6">
+              <button className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-200 bg-white hover:bg-blue-50 transition">
+                <Bell className="h-6 w-6 text-blue-600" />
               </button>
-              {notificationOpen && (
-                <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
-                  <div className="px-4 py-3 text-gray-900 font-semibold border-b border-gray-100">Notifications</div>
-                  <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
-                    <div className="font-medium">Application Viewed</div>
-                    <div className="text-gray-500">Your application for Frontend Developer was viewed</div>
-                  </div>
-                  <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
-                    <div className="font-medium">New Job Posted</div>
-                    <div className="text-gray-500">React Developer position available</div>
-                  </div>
-                  <div className="px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 cursor-pointer">
-                    <div className="font-medium">New Messages</div>
-                    <div className="text-gray-500">You have 2 new messages</div>
-                  </div>
-                  <div className="px-4 py-2 text-xs text-blue-600 hover:bg-blue-50 cursor-pointer border-t border-gray-100">
-                    View all notifications
-                  </div>
-                </div>
-              )}
-            </div>
-            {/* Profile Dropdown */}
-            <div className="relative profile-dropdown">
-              <button
-                onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
-                className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100"
-                aria-label="Profile menu"
-              >
-                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                  <span className="text-white text-sm font-semibold">C</span>
-                </div>
-                <div className="hidden md:block text-left">
-                  <div className="text-sm font-medium text-gray-900">Chinmayi</div>
-                  <div className="text-xs text-gray-500">{role === 'student' ? 'Student' : 'Admin'}</div>
-                </div>
+              <button className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-200 bg-white hover:bg-blue-50 transition">
+                <Settings className="h-6 w-6 text-gray-500" />
               </button>
-              {profileDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <div className="text-sm font-medium text-gray-900">Chinmayi</div>
-                    <div className="text-xs text-gray-500">chinmayi@example.com</div>
-                  </div>
-                  <button
-                    onClick={() => { setProfileDropdownOpen(false); navigate(role === 'admin' ? '/admin/profile' : '/user/profile'); }}
-                    className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
-                  >
-                    <User className="h-4 w-4 mr-3" />
-                    Profile
-                  </button>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
-                  >
-                    <LogOut className="h-4 w-4 mr-3" />
-                    Logout
-                  </button>
-                </div>
-              )}
+              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-blue-100 font-bold text-blue-700 text-lg">AJ</div>
+              <span className="font-medium text-gray-900 ml-2 whitespace-nowrap">Alex Johnson</span>
             </div>
           </div>
         </nav>

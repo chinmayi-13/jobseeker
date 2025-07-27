@@ -171,8 +171,8 @@ const PersonalGrowth: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Page Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Personal Growth Tracker</h1>
-            <p className="text-gray-600">Track your emotional journey through your job search</p>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Personal Growth Tracker</h1>
+            <p className="text-base text-gray-600">Track your emotional journey through your job search</p>
           </div>
 
           {/* Stats Overview */}
@@ -180,7 +180,7 @@ const PersonalGrowth: React.FC = () => {
             {stats.map((stat) => (
               <div key={stat.title} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="text-sm font-medium text-gray-500 mb-2">{stat.title}</div>
-                <div className="text-2xl font-bold">{stat.value}</div>
+                <div className="text-xl font-bold">{stat.value}</div>
                 <div className="text-xs text-gray-400 mt-1">{stat.change}</div>
               </div>
             ))}
@@ -205,7 +205,7 @@ const PersonalGrowth: React.FC = () => {
               {/* Reflections Tab */}
               {view === "Reflections" && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-                  <h2 className="text-xl font-semibold mb-4">Daily Reflections</h2>
+                  <h2 className="text-2xl font-bold mb-4">Daily Reflections</h2>
                   {weeklyReflections.map((entry, index) => (
                     <div key={index} className="border-l-4 border-blue-400 pl-6 pb-6 mb-6">
                       <div className="flex items-start justify-between mb-3">
@@ -226,7 +226,7 @@ const PersonalGrowth: React.FC = () => {
                       <p className="text-gray-600 mb-4">{entry.reflection}</p>
                       <div className="grid md:grid-cols-2 gap-4">
                         <div>
-                          <h4 className="font-medium text-sm mb-2">What I Learned:</h4>
+                          <h4 className="text-base font-semibold mb-2">What I Learned:</h4>
                           <div className="flex flex-wrap gap-1">
                             {entry.learnings.map((learning) => (
                               <span key={learning} className="px-2 py-1 rounded bg-gray-100 text-xs">{learning}</span>
@@ -234,7 +234,7 @@ const PersonalGrowth: React.FC = () => {
                           </div>
                         </div>
                         <div>
-                          <h4 className="font-medium text-sm mb-2">Next Steps:</h4>
+                          <h4 className="text-base font-semibold mb-2">Next Steps:</h4>
                           <ul className="text-sm text-gray-500 space-y-1">
                             {entry.nextSteps.map((step, i) => (
                               <li key={i} className="flex items-start gap-2">
@@ -253,7 +253,7 @@ const PersonalGrowth: React.FC = () => {
               {/* Goals Tab */}
               {view === "Goals" && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-                  <h2 className="text-xl font-semibold mb-4">Progress Goals</h2>
+                  <h2 className="text-2xl font-bold mb-4">Progress Goals</h2>
                   {progressGoals.map((goal, index) => (
                     <div key={index} className="mb-6">
                       <div className="flex items-center justify-between">
@@ -283,7 +283,7 @@ const PersonalGrowth: React.FC = () => {
               {/* Mood Tracker Tab */}
               {view === "Mood Tracker" && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-                  <h2 className="text-xl font-semibold mb-4">Emotional Journey</h2>
+                  <h2 className="text-2xl font-bold mb-4">Emotional Journey</h2>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                     {moodDistribution.map((mood) => (
                       <div key={mood.name} className="text-center p-4 border rounded-lg">
@@ -336,7 +336,7 @@ const PersonalGrowth: React.FC = () => {
               {/* Insights Tab */}
               {view === "Insights" && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-                  <h2 className="text-xl font-semibold mb-4">AI Insights</h2>
+                  <h2 className="text-2xl font-bold mb-4">AI Insights</h2>
                   <div className="space-y-4">
                     <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
                       <h4 className="font-medium text-blue-900 mb-2">📈 Progress Highlight</h4>
@@ -365,7 +365,7 @@ const PersonalGrowth: React.FC = () => {
                   <div className="space-y-6">
                     <div className="card">
                       <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-xl font-semibold text-gray-900 mb-2">January 2024 Summary</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-2">January 2024 Summary</h2>
                         <button
                           onClick={downloadReport}
                           className="flex items-center text-blue-600 hover:text-blue-700 bg-blue-100/50 px-4 py-2 rounded-lg"
@@ -398,7 +398,7 @@ const PersonalGrowth: React.FC = () => {
                     {/* Mood Distribution Chart */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                       <div className="bg-gray-50 p-6 rounded-xl">
-                        <h3 className="text-lg font-semibold mb-4">Mood Distribution</h3>
+                        <h3 className="text-xl font-semibold mb-4">Mood Distribution</h3>
                         {moodDistribution.length > 0 ? (
                           <ResponsiveContainer width="100%" height={300}>
                             <PieChart>
@@ -427,7 +427,7 @@ const PersonalGrowth: React.FC = () => {
 
                       {/* Mood Trend Chart */}
                       <div className="bg-gray-50 p-6 rounded-xl">
-                        <h3 className="text-lg font-semibold mb-4">Mood Trend</h3>
+                        <h3 className="text-xl font-semibold mb-4">Mood Trend</h3>
                         {moodTrendData.length > 0 ? (
                           <ResponsiveContainer width="100%" height={300}>
                                                          <LineChart data={moodTrendData}>
@@ -565,14 +565,14 @@ const PersonalGrowth: React.FC = () => {
 
               {/* Motivational Quote */}
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow p-6 text-center">
-                <h3 className="font-bold text-lg mb-2">Today's Motivation</h3>
+                <h3 className="text-xl font-bold mb-2">Today's Motivation</h3>
                 <p className="text-white/90 mb-4">{motivationalQuote.quote}</p>
                 <p className="text-sm text-white/70">- {motivationalQuote.author}</p>
               </div>
 
               {/* Quick Stats */}
               <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-                <h3 className="font-bold text-lg mb-4">This Week</h3>
+                <h3 className="text-xl font-bold mb-4">This Week</h3>
                 <div className="space-y-4">
                   {quickStats.map((stat, i) => (
                     <div key={i} className="flex justify-between items-center">

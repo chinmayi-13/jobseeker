@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { GraduationCap, MoreVertical, User, LogOut, Settings as SettingsIcon } from 'lucide-react';
+import { GraduationCap, MoreVertical, User, LogOut, Settings as SettingsIcon, Menu } from 'lucide-react';
 
 interface NavbarProps {
   userType?: 'student' | 'admin';
@@ -35,8 +35,19 @@ const Navbar: React.FC<NavbarProps> = ({ userType = 'student' }) => {
   return (
     <nav className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
       <div className="flex items-center space-x-2">
+        <button
+          onClick={() => console.log('Toggle sidebar')}
+          className="p-4 rounded-lg hover:bg-gray-100 bg-red-500 border-2 border-black"
+        >
+          <Menu className="h-8 w-8 text-white" />
+        </button>
         <GraduationCap className="h-8 w-8 text-blue-600" />
-        <span className="text-xl font-semibold text-gray-900">Career Companion</span>
+        <span
+          className="text-2xl font-bold font-sans text-gray-900"
+          style={{ fontFamily: 'Inter' }}
+        >
+          Career Companion
+        </span>
       </div>
 
       <div className="relative navbar-dropdown">

@@ -2,164 +2,95 @@ import React from 'react';
 import {
   LayoutDashboard,
   Search,
-  ClipboardCheck,
-  Bookmark,
   Cpu,
+  ClipboardCheck,
   BarChart3,
   Target,
   TrendingUp,
-  Globe,
-  Bell,
-  Sliders,
-  Zap
+  Users,
+  Settings as SettingsIcon,
+  User as UserIcon,
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const menu = [
-  {
-    section: 'MAIN MENU',
-    items: [
-      {
-        id: 'dashboard',
-        label: 'Dashboard',
-        icon: LayoutDashboard,
-        subtitle: 'Overview & insights',
-        selected: true,
-      },
-      {
-        id: 'job-discovery',
-        label: 'Job Discovery',
-        icon: Search,
-        subtitle: 'Find opportunities',
-      },
-      {
-        id: 'applications',
-        label: 'Applications',
-        icon: ClipboardCheck,
-        subtitle: 'Track progress',
-        badge: 24,
-      },
-      {
-        id: 'saved-jobs',
-        label: 'Saved Jobs',
-        icon: Bookmark,
-        subtitle: 'Your favorites',
-        badge: 8,
-      },
-    ],
-  },
-  {
-    section: 'AI TOOLS',
-    items: [
-      {
-        id: 'ai-job-matcher',
-        label: 'AI Job Matcher',
-        icon: Cpu,
-        subtitle: 'Smart recommendations',
-      },
-      {
-        id: 'salary-insights',
-        label: 'Salary Insights',
-        icon: BarChart3,
-        subtitle: 'Market analysis',
-      },
-      {
-        id: 'trends',
-        label: 'Trends',
-        icon: TrendingUp,
-        subtitle: 'Market trends',
-      },
-    ],
-  },
-  {
-    section: 'SCRAPING HUB',
-    items: [
-      {
-        id: 'platform-status',
-        label: 'Platform Status',
-        icon: Globe,
-        subtitle: 'Scraping health',
-      },
-      {
-        id: 'job-alerts',
-        label: 'Job Alerts',
-        icon: Bell,
-        subtitle: 'Smart notifications',
-        badge: 12,
-      },
-      {
-        id: 'filters',
-        label: 'Filters',
-        icon: Sliders,
-        subtitle: 'Customize search',
-      },
-    ],
-  },
+  { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'job-discovery', label: 'Find Jobs', icon: Search },
+  { id: 'ai-job-matcher', label: 'Skill Analyzer', icon: Cpu },
+  { id: 'applications', label: 'Application Tracker', icon: ClipboardCheck },
+  { id: 'job-compare', label: 'Job Compare', icon: Target },
+  { id: 'growth', label: 'Growth Tracker', icon: TrendingUp },
+  { id: 'peer-compare', label: 'Peer Comparison', icon: Users },
+  // Divider here
+  { id: 'profile', label: 'My Profile', icon: UserIcon },
+  { id: 'settings', label: 'Settings', icon: SettingsIcon },
 ];
+
+const getRoute = (id: string) => {
+  if (id === 'dashboard') return '/user';
+  if (id === 'job-discovery') return '/user/jobs';
+  if (id === 'ai-job-matcher') return '/user/skill-gap';
+  if (id === 'applications') return '/user/tracker';
+  if (id === 'job-compare') return '/user/job-compare';
+  if (id === 'growth') return '/user/growth';
+  if (id === 'peer-compare') return '/user/peer-compare';
+  if (id === 'profile') return '/user/profile';
+  if (id === 'settings') return '/user/settings';
+  return null;
+};
 
 const Sidebar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  // Map menu item id to route
-  const getRoute = (id: string) => {
-    if (id === 'dashboard') return '/user';
-    if (id === 'applications') return '/user/tracker';
-    if (id === 'ai-job-matcher') return '/user/skill-gap';
-    if (id === 'salary-insights') return '/user/growth';
-    if (id === 'trends') return '/user/job-compare';
-    if (id === 'platform-status') return '/user/peer-compare';
-    // Add more routes as needed
-    return null;
-  };
   return (
-    <aside className="w-72 bg-white h-full flex flex-col select-none border-r border-gray-200">
-      {/* Logo and Tagline */}
-      <div className="flex flex-col items-center pt-8 pb-6">
-        <div className="bg-blue-600 rounded-2xl h-14 w-14 flex items-center justify-center mb-3">
-          <Zap className="h-8 w-8 text-white" />
-        </div>
-        <h1 className="text-2xl font-extrabold text-gray-900">JobScape</h1>
-        <span className="text-gray-500 text-sm mt-1">AI-Powered Job Discovery</span>
+    <aside className="w-72 bg-white h-full flex flex-col select-none border-r border-gray-100">
+      {/* Logo and App Name */}
+      <div className="flex items-center h-20 px-8 border-b border-gray-100">
+        <span className="text-xl font-extrabold text-blue-700 tracking-tight">Student Portal</span>
       </div>
-      <div className="flex-1 overflow-y-auto px-6 pb-6">
-        {menu.map((section) => (
-          <div key={section.section} className="mb-7">
-            <div className="text-xs font-bold text-gray-400 mb-3 tracking-widest uppercase">
-              {section.section}
-            </div>
-            <ul className="space-y-1">
-              {section.items.map((item) => {
-                const Icon = item.icon;
-                const route = getRoute(item.id);
-                // Determine if this item is selected based on the current route
-                const isSelected = route && location.pathname === route;
-                return (
-                  <li key={item.id}>
+      <nav className="flex-1 flex flex-col justify-between py-6">
+        <ul className="px-2 space-y-1">
+          {menu.map((item, idx) => {
+            const Icon = item.icon;
+            const route = getRoute(item.id);
+            const isSelected = route && location.pathname.startsWith(route);
+            // Divider before profile/settings
+            if (item.id === 'profile') {
+              return (
+                <React.Fragment key={item.id}>
+                  <li>
+                    <div className="my-3 border-t border-gray-200" />
+                  </li>
+                  <li>
                     <button
-                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-2xl transition-colors duration-200 group
-                        ${isSelected ? 'bg-blue-600 text-white font-bold shadow' : 'text-gray-900 hover:bg-gray-100'}`}
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors duration-200
+                        ${isSelected ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-600 hover:bg-gray-50'}
+                      `}
                       onClick={() => route && navigate(route)}
                     >
-                      <span className={`flex items-center justify-center h-8 w-8 rounded-xl ${isSelected ? 'bg-white/20' : 'bg-gray-100 group-hover:bg-blue-50'}`}>
-                        <Icon className={`h-5 w-5 ${isSelected ? 'text-white' : 'text-blue-600'}`} />
-                      </span>
-                      <span className="flex-1 min-w-0 flex flex-col items-start">
-                        <span className={`truncate ${isSelected ? 'text-white font-bold' : 'font-semibold'}`}>{item.label}</span>
-                        <span className={`text-xs ${isSelected ? 'text-blue-200' : 'text-gray-500'} font-normal -mt-0.5`}>{item.subtitle}</span>
-                      </span>
-                      {item.badge && (
-                        <span className={`ml-2 text-xs font-bold px-2 py-0.5 rounded-full ${isSelected ? 'bg-white/20 text-white' : 'bg-blue-600 text-white'}`}>
-                          {item.badge}
-                        </span>
-                      )}
+                      <Icon className={`h-5 w-5 ${isSelected ? 'text-blue-700' : 'text-gray-400'} transition-colors`} />
+                      <span className="text-base font-medium">{item.label}</span>
                     </button>
                   </li>
-                );
-              })}
-            </ul>
-          </div>
-        ))}
-      </div>
+                </React.Fragment>
+              );
+            }
+            return (
+              <li key={item.id}>
+                <button
+                  className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors duration-200
+                    ${isSelected ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-600 hover:bg-gray-50'}
+                  `}
+                  onClick={() => route && navigate(route)}
+                >
+                  <Icon className={`h-5 w-5 ${isSelected ? 'text-blue-700' : 'text-gray-400'} transition-colors`} />
+                  <span className="text-base font-medium">{item.label}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     </aside>
   );
 };

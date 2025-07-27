@@ -178,8 +178,8 @@ const PeerComparison: React.FC = () => {
       <Layout role="student">
       <div className="min-h-screen bg-gray-50 p-0">
         <div className="px-8 pt-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Peer Resume Comparison</h1>
-          <p className="text-gray-600 mb-8">Compare your resume with peers and get insights</p>
+              <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Peer Resume Comparison</h1>
+          <p className="text-base text-gray-600 mb-8">Compare your resume with peers and get insights</p>
             </div>
 
         {/* Resume Upload Section */}
@@ -189,7 +189,7 @@ const PeerComparison: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Upload Your Resume</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Choose Upload Method</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Choose Upload Method</h3>
                   <div className="space-y-4">
                     <label className="flex items-center space-x-3 cursor-pointer">
                       <input
@@ -216,7 +216,7 @@ const PeerComparison: React.FC = () => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Resume Content</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Resume Content</h3>
                   {uploadMethod === 'file' ? (
                     <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
                 <input 
@@ -308,7 +308,7 @@ const PeerComparison: React.FC = () => {
               {/* Tab Content */}
               {activeTab === 'metrics' && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Resume Metrics Breakdown</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Resume Metrics Breakdown</h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {resumeMetrics.map((metric) => (
                       <div key={metric.name} className="bg-gray-50 rounded-lg p-6">
@@ -331,7 +331,7 @@ const PeerComparison: React.FC = () => {
 
               {activeTab === 'skills' && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Skills Comparison</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Skills Comparison</h3>
                   <div className="space-y-6">
                     {skillsComparison.map((skill) => (
                       <div key={skill.name} className="bg-gray-50 rounded-lg p-6">
@@ -368,7 +368,7 @@ const PeerComparison: React.FC = () => {
 
               {activeTab === 'peers' && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Peer Group Analysis</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Peer Group Analysis</h3>
                   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {peerGroups.map((group) => (
                       <div key={group.name} className="bg-gray-50 rounded-lg p-6">
@@ -385,11 +385,11 @@ const PeerComparison: React.FC = () => {
 
               {activeTab === 'overall' && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Overall Comparison</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Overall Comparison</h3>
                   
                   {/* Skills Radar Comparison */}
                   <div className="bg-white rounded-xl shadow-sm p-6 border-2 border-blue-200 mb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">🎯 Skills Radar Comparison</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">🎯 Skills Radar Comparison</h3>
                     <ResponsiveContainer width="100%" height={300}>
                       <RadarChart data={radarData}>
                         <PolarGrid />
@@ -430,7 +430,7 @@ const PeerComparison: React.FC = () => {
 
                   {/* Overall Score Comparison */}
                   <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-200">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">📈 Overall Score Comparison</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">📈 Overall Score Comparison</h3>
                     <div className="grid md:grid-cols-3 gap-6">
                       <div className="text-center">
                         <div className="text-3xl font-bold text-blue-600">{resumeScore}</div>
@@ -483,7 +483,7 @@ const PeerComparison: React.FC = () => {
 
                   {/* Learning Resources */}
                   <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-4">📚 Recommended Learning Resources</h3>
+                    <h3 className="text-xl font-semibold text-blue-900 mb-4">📚 Recommended Learning Resources</h3>
                     <ul className="text-sm text-blue-800 space-y-2">
                 <li>• Complete online courses in your weak areas</li>
                 <li>• Join coding bootcamps or workshops</li>
