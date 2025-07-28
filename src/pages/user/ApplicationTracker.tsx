@@ -165,14 +165,14 @@ export default function Applications() {
               {/* HamburgerMenu placeholder */}
               <button className="md:hidden p-2 rounded hover:bg-gray-200">
                 <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
-                </button>
-                  <div>
+              </button>
+                <div>
                 <h1 className="text-2xl font-bold text-gray-900">My Applications</h1>
                 <p className="text-sm text-gray-500">Track your job application progress</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-              <button
+              <button 
                 className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded px-3 py-2 text-sm flex items-center gap-2 hover:from-blue-600 hover:to-purple-600"
                 onClick={() => setShowNewApplicationForm(true)}
               >
@@ -188,7 +188,7 @@ export default function Applications() {
               <div className="bg-white rounded-lg p-6 w-full max-w-xl mx-4">
                 <div className="flex justify-between items-center mb-4">
                   <h2 className="text-xl font-bold">Application History</h2>
-                  <button
+                  <button 
                     onClick={() => setShowNewApplicationForm(false)}
                     className="text-gray-500 hover:text-gray-700"
                   >
@@ -206,25 +206,25 @@ export default function Applications() {
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl font-bold bg-gray-100 border border-gray-300">
                           {job.company.charAt(0)}
-                  </div>
-                  <div>
+                        </div>
+                        <div>
                           <div className="font-semibold text-lg text-gray-900">{job.position}</div>
                           <div className="flex items-center gap-2 text-gray-500 text-sm">
                             <span>{job.company}</span>
                             <span>•</span>
                             <span>{job.location}</span>
-                  </div>
+                          </div>
                           <div className="flex gap-2 mt-1">
                             <span className="px-2 py-0.5 rounded bg-green-100 text-green-700 text-xs font-medium">{job.status.charAt(0).toUpperCase() + job.status.slice(1)}</span>
                             <span className="px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-xs font-medium">{job.salary}</span>
-                  </div>
-                  </div>
-                  </div>
+                          </div>
+                        </div>
+                      </div>
                       <div className="text-right">
                         <div className="text-lg font-bold text-blue-600">{job.salary}</div>
                         <div className="text-xs text-gray-400 mt-1">{job.appliedDate}</div>
-              </div>
-            </div>
+                      </div>
+                    </div>
                   ))}
                 </div>
                 <button
