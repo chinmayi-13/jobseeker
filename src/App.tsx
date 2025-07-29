@@ -17,6 +17,8 @@ import AdminSettings from './pages/admin/Settings';
 import AnalysisPage from './pages/user/AnalysisPage';
 import CertificationsPage from './pages/user/CertificationsPage';
 import ProgressPage from './pages/user/ProgressPage';
+import SignupPage from './pages/SignupPage';
+import VerificationPage from './pages/VerificationPage';
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/verification" element={<VerificationPage />} />
+        <Route path="/dashboard" element={<UserDashboard />} />
         <Route path="/user" element={<UserDashboard />} />
         <Route path="/user/skill-gap" element={<SkillGapAnalyzer />} />
         <Route path="/user/tracker" element={<ApplicationTracker />} />

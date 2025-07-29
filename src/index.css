@@ -4,11 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base body styles */
 body {
   font-family: "Inter", sans-serif !important;
   font-size: 1rem !important;
+  /* Set the overall page background using the color from tailwind.config.js */
+  background-color: #f5f5f5; /* Uses the custom color from config */
 }
 
+/* --- Your existing Navbar Styles (kept as is) --- */
 .navbar {
   background-color: #ffffff;
   border-bottom: 1px solid #d1d5db;
@@ -46,4 +50,3 @@ body {
   color: #333333;
   text-decoration: none;
 }
- 
