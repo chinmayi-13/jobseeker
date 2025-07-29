@@ -4,8 +4,8 @@ import { User, ArrowLeft, EyeOff, Edit2, Camera, Settings, Shield, Bell, Downloa
 import Layout from '../../components/Layout';
 
 const mockProfile = {
-  name: 'Priya Sharma',
-  email: 'priya.sharma@email.com',
+  name: 'Chinmayi Sharma',
+  email: 'chinmayi.sharma@email.com',
   phone: '+91 98765 43210',
   role: 'Senior Frontend Developer',
   location: 'Bangalore, India',
@@ -50,7 +50,7 @@ const Profile: React.FC = () => {
             {/* Profile Avatar */}
             <div className="relative">
               <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center">
-                <span className="text-gray-600 text-2xl font-bold">PS</span>
+                <span className="text-gray-600 text-2xl font-bold">CS</span>
               </div>
               <button className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1 shadow-md border-2 border-white">
                 <Camera className="h-4 w-4 text-white" />

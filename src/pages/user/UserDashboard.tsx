@@ -37,7 +37,7 @@ export default function UserDashboard() {
       <main className="bg-gray-50 min-h-screen py-10 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Greeting & Stats */}
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Welcome back, Alex</h1>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-2">Welcome back, Chinmayi Sharma</h1>
           <p className="text-lg text-gray-500 mb-8">Here's what's happening with your career journey</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">

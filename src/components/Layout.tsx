@@ -287,9 +287,9 @@ const Layout: React.FC<LayoutProps> = ({ children, role, viewMode: propViewMode,
                 aria-haspopup="true"
                 aria-expanded={profileDropdownOpen}
               >
-                AJ
+                CS
               </button>
-              <span className="font-medium text-gray-900 ml-3 whitespace-nowrap text-lg">Alex Johnson</span>
+              <span className="font-medium text-gray-900 ml-3 whitespace-nowrap text-lg">Chinmayi Sharma</span>
 
               {/* Profile Dropdown Menu */}
               {profileDropdownOpen && (
