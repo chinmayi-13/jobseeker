@@ -1,4 +1,6 @@
+// src/components/UserDashboard.tsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Bell, Settings as SettingsIcon, User as UserIcon } from 'lucide-react';
 import Layout from '../../components/Layout';
 
@@ -16,9 +18,9 @@ const applications = [
 ];
 
 const quickActions = [
-  { label: 'Find New Jobs', primary: true },
-  { label: 'Analyze Skills' },
-  { label: 'Compare Resume' },
+  { label: 'Find New Jobs', primary: true, path: '/user/jobs' },
+  { label: 'Analyze Skills', path: '/user/skill-gap' },
+  { label: 'Compare Resume', path: '/user/peer-compare' },
 ];
 
 const tasks = [
@@ -28,10 +30,10 @@ const tasks = [
 ];
 
 export default function UserDashboard() {
+  const navigate = useNavigate();
+
   return (
     <Layout role="student">
-      {/* Remove the header and search/user bar from the dashboard content area, as it is now handled by the main navbar in Layout. */}
-
       <main className="bg-gray-50 min-h-screen py-10 px-4 md:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Greeting & Stats */}
@@ -66,7 +68,11 @@ export default function UserDashboard() {
                   </div>
                 ))}
               </div>
-              <button className="w-full py-2 rounded-lg border border-gray-200 text-base font-semibold text-gray-700 hover:bg-gray-100">View All Applications</button>
+              <button
+                onClick={() => navigate('/user/tracker')} // Changed navigation path to /user/tracker
+                className="w-full py-2 rounded-lg border border-gray-200 text-base font-semibold text-gray-700 hover:bg-gray-100">
+                View All Applications
+              </button>
             </div>
 
             {/* Right Column: Quick Actions & Upcoming Tasks */}
@@ -78,6 +84,7 @@ export default function UserDashboard() {
                   {quickActions.map((action, i) => (
                     <button
                       key={i}
+                      onClick={() => navigate(action.path)}
                       className={`w-full py-3 rounded ${action.primary ? 'bg-blue-700 text-white font-semibold' : 'bg-white text-gray-900 border border-gray-200 font-medium hover:bg-gray-50'}`}
                     >
                       {action.label}
