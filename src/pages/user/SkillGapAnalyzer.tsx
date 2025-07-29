@@ -199,12 +199,7 @@ const SkillGapAnalyzer: React.FC = () => {
               </div>
               <input type="file" accept=".pdf,.doc,.docx" ref={fileInputRef} onChange={handleFileChange} style={{ display: 'none' }} />
             </div>
-            <button
-              onClick={handleStartOver}
-              className="mt-4 md:mt-0 md:ml-6 px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded font-medium"
-            >
-              Start Over
-            </button>
+            {/* Start Over button removed as requested */}
           </div>
 
           {/* Manual Entry Modal */}
@@ -318,20 +313,19 @@ const SkillGapAnalyzer: React.FC = () => {
                       <p className="text-gray-600 mb-4">These skills are highly demanded for your target role</p>
                       <div className="space-y-3">
                         {skillsGap.map((skill, index) => (
-                          <div key={index} className="p-4 bg-red-50 rounded-lg flex items-center justify-between border border-red-200">
-                            <div>
-                              <div className="font-semibold text-red-800">{skill}</div>
-                              <div className="text-sm text-red-600">Demand: <span className="font-bold">High</span></div>
+                          <div key={index} className="flex items-center h-12 bg-red-50 border border-red-200 rounded-full overflow-hidden mb-2">
+                            <div className="flex-1 flex items-center pl-4">
+                              <span className="font-semibold text-red-800">{skill}</span>
+                              <span className="ml-4 text-sm text-red-600">Demand: <span className="font-bold">High</span></span>
                             </div>
-                            <div className="flex gap-2">
-                              <span className="px-3 py-1 rounded-full bg-white border border-red-300 text-red-600 text-xs font-medium">Missing</span>
-                              <button 
-                                onClick={() => handleLearnNow(skill)}
-                                className="px-3 py-1 rounded bg-red-100 text-red-700 text-xs font-semibold hover:bg-red-200"
-                              >
-                                Learn Now
-                              </button>
-                            </div>
+                            <span className="px-3 py-1 rounded-full bg-white border border-red-300 text-red-600 text-xs font-medium mx-2">Missing</span>
+                            <button 
+                              onClick={() => handleLearnNow(skill)}
+                              className="px-4 h-full bg-red-100 text-red-700 text-xs font-semibold hover:bg-red-200 border-l border-red-200"
+                              style={{ borderRadius: 0 }}
+                            >
+                              Learn Now
+                            </button>
                           </div>
                         ))}
                       </div>
@@ -346,11 +340,11 @@ const SkillGapAnalyzer: React.FC = () => {
                 </div>
                 <div className="space-y-2">
                         {skillsHave.map((skill, index) => (
-                    <div key={index} className="flex items-center p-3 bg-green-50 rounded-lg">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
-                      <span className="text-green-800 font-medium">{skill}</span>
-                    </div>
-                  ))}
+                          <div key={index} className="flex items-center h-12 bg-green-50 border border-green-200 rounded-full overflow-hidden mb-2">
+                            <CheckCircle className="h-4 w-4 text-green-600 ml-4 mr-2" />
+                            <span className="text-green-800 font-medium flex-1">{skill}</span>
+                          </div>
+                        ))}
                 </div>
               </div>
                   )}
@@ -367,29 +361,17 @@ const SkillGapAnalyzer: React.FC = () => {
                           { skill: 'Docker', course: 'Docker & Kubernetes Complete Course', provider: 'Coursera', duration: '12 hours', rating: 4.9, price: 'Free' },
                           { skill: 'AWS', course: 'AWS Certified Developer', provider: 'AWS Training', duration: '40 hours', rating: 4.7, price: '₹2,999' }
                         ].map((course, index) => (
-                          <div key={index} className="p-4 border rounded-lg hover:shadow-md">
-                            <div className="flex items-start justify-between mb-3">
-                              <div>
-                                <h4 className="font-medium mb-1">{course.course}</h4>
-                                <p className="text-sm text-gray-600 mb-2">For: <span className="px-2 py-1 rounded bg-blue-100 text-blue-700 text-xs">{course.skill}</span></p>
-                                <div className="flex items-center gap-4 text-sm text-gray-500">
-                                  <span>{course.provider}</span>
-                                  <span>{course.duration}</span>
-                                  <div className="flex items-center gap-1">
-                                    <span className="text-yellow-400">★</span>
-                                    <span>{course.rating}</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="text-right">
-                                <div className="font-semibold text-lg text-blue-600 mb-2">{course.price}</div>
-                                <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
-                                  Enroll Now
-                                </button>
-                              </div>
-                      </div>
-                    </div>
-                  ))}
+                          <div key={index} className="flex items-center h-16 bg-blue-50 border border-blue-200 rounded-full overflow-hidden mb-2">
+                            <div className="flex-1 flex flex-col pl-4">
+                              <span className="font-medium">{course.course}</span>
+                              <span className="text-xs text-gray-600">For: <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded">{course.skill}</span> • {course.provider} • {course.duration} • <span className="text-yellow-400">★</span>{course.rating}</span>
+                            </div>
+                            <div className="text-right pr-4 flex flex-col items-end">
+                              <span className="font-semibold text-blue-600">{course.price}</span>
+                              <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 mt-1">Enroll Now</button>
+                            </div>
+                          </div>
+                        ))}
                 </div>
               </div>
                   )}
@@ -409,17 +391,15 @@ const SkillGapAnalyzer: React.FC = () => {
                           { skill: 'Docker', demand: 'High', reason: 'Containerization and DevOps' },
                           { skill: 'Kubernetes', demand: 'Medium', reason: 'Container orchestration' }
                         ].map((skill, index) => (
-                          <div key={index} className="p-4 border rounded-lg hover:shadow-md">
-                            <div className="flex items-center justify-between mb-2">
-                  <div>
-                                <h4 className="font-medium text-gray-900">{skill.skill}</h4>
-                                <p className="text-sm text-gray-600">{skill.reason}</p>
-                    </div>
-                              <div className="text-right text-sm text-gray-500">
-                                <span>Demand: <span className="font-bold text-green-600">{skill.demand}</span></span>
-                    </div>
-                  </div>
-                    </div>
+                          <div key={index} className="flex items-center h-12 bg-purple-50 border border-purple-200 rounded-full overflow-hidden mb-2">
+                            <div className="flex-1 flex flex-col pl-4">
+                              <span className="font-medium text-gray-900">{skill.skill}</span>
+                              <span className="text-xs text-gray-600">{skill.reason}</span>
+                            </div>
+                            <div className="text-right pr-4 text-sm text-purple-700">
+                              Demand: <span className="font-bold">{skill.demand}</span>
+                            </div>
+                          </div>
                         ))}
                     </div>
                   </div>
@@ -467,36 +447,7 @@ const SkillGapAnalyzer: React.FC = () => {
               </div>
             </div>
 
-              {/* Quick Actions - Full Width */}
-              <div className="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 p-6 w-full">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <button 
-                    onClick={() => handleQuickAction('View Detailed Analysis')}
-                    data-action="View Detailed Analysis"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 font-medium w-full transition-colors duration-200"
-                  >
-                    <TrendingUp className="h-5 w-5 text-blue-600" />
-                    View Detailed Analysis
-                  </button>
-                  <button 
-                    onClick={() => handleQuickAction('Find Certifications')}
-                    data-action="Find Certifications"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 font-medium w-full transition-colors duration-200"
-                  >
-                    <BookOpen className="h-5 w-5 text-green-600" />
-                    Find Certifications
-                  </button>
-                  <button 
-                    onClick={() => handleQuickAction('Track Progress')}
-                    data-action="Track Progress"
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 bg-gray-50 hover:bg-gray-100 font-medium w-full transition-colors duration-200"
-                  >
-                    <CheckCircle className="h-5 w-5 text-purple-600" />
-                    Track Progress
-                  </button>
-                </div>
-              </div>
+              {/* Quick Actions section removed as requested */}
 
               {/* Recommendations Section - full width below */}
             <div className="mt-8 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
