@@ -153,11 +153,11 @@ const Layout: React.FC<LayoutProps> = ({ children, role, viewMode: propViewMode,
   // Function to mark all unread notifications as read when the dropdown opens
   const handleBellClick = () => {
     setNotificationOpen((prev) => !prev);
-    if (!notificationOpen) { // If opening, mark all unread as read
-      setNotifications((prevNotifications) =>
-        prevNotifications.map((n) => ({ ...n, read: true }))
-      );
-    }
+    // if (!notificationOpen) { // If opening, mark all unread as read
+    //   setNotifications((prevNotifications) =>
+    //     prevNotifications.map((n) => ({ ...n, read: true }))
+    //   );
+    // }
   };
 
   const handleLogout = () => {
