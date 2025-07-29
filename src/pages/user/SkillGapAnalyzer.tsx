@@ -18,18 +18,7 @@ const SkillGapAnalyzer: React.FC = () => {
   const [skillsGap, setSkillsGap] = useState(['GraphQL', 'Docker', 'Kubernetes']);
   const navigate = useNavigate();
 
-  // Restore state from localStorage on mount
-  useEffect(() => {
-    const savedResumeName = localStorage.getItem('resumeName');
-    const savedManualSkills = localStorage.getItem('manualSkills');
-    if (savedResumeName) {
-      // We can't restore the actual File, but we can show the name as uploaded
-      setSelectedFile({ name: savedResumeName } as File);
-    }
-    if (savedManualSkills) {
-      setManualSkills(savedManualSkills);
-    }
-  }, []);
+  // Do not restore state from localStorage; always show upload option first
 
   const handleResumeUploadClick = () => {
     fileInputRef.current?.click();
@@ -158,24 +147,35 @@ const SkillGapAnalyzer: React.FC = () => {
       <Layout role="student">
       <div className="p-6 bg-gray-50 min-h-screen">
           <div className="max-w-7xl mx-auto">
-          {/* Upload Section */}
+          {/* Upload Section - only show if no resume uploaded and not in manual entry mode */}
+          {/* Show only the Upload Resume option first */}
           <div className="bg-blue-50 rounded-xl border border-blue-100 p-8 flex flex-col md:flex-row items-center justify-between mb-6">
             <div className="flex-1 flex flex-col items-center md:items-start">
               <Upload className="h-12 w-12 text-blue-400 mb-4" />
-              <h2 className="text-xl font-semibold mb-1 text-gray-900">Upload Your Resume or LinkedIn Profile</h2>
+              <h2 className="text-xl font-semibold mb-1 text-gray-900">Upload Your Resume</h2>
               <p className="text-gray-600 mb-4">Get instant analysis of your skill gaps</p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <button 
-                  onClick={handleResumeUploadClick} 
-                  className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 ${
-                    uploadMethod === 'resume' 
-                      ? 'bg-blue-600 text-white' 
-                      : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
-                  }`}
-                >
-                  <Upload className="h-5 w-5" /> 
-                  {selectedFile ? `Uploaded: ${selectedFile.name}` : 'Upload Resume (PDF/DOC)'}
-                </button>
+                {!selectedFile && (
+                  <button 
+                    onClick={handleResumeUploadClick} 
+                    className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 ${
+                      uploadMethod === 'resume' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    <Upload className="h-5 w-5" /> 
+                    Upload Resume (PDF/DOC)
+                  </button>
+                )}
+                {selectedFile && (
+                  <span className="px-4 py-2 rounded-lg bg-green-100 text-green-800 font-medium flex items-center gap-2">
+                    <Upload className="h-5 w-5" />
+                    Uploaded: {selectedFile.name}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3 mt-4">
                 <button 
                   onClick={handleLinkedInConnect}
                   className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 ${
@@ -199,9 +199,24 @@ const SkillGapAnalyzer: React.FC = () => {
               </div>
               <input type="file" accept=".pdf,.doc,.docx" ref={fileInputRef} onChange={handleFileChange} style={{ display: 'none' }} />
             </div>
-            {/* Start Over button removed as requested */}
+            {/* Start Over button */}
+            <div className="mt-4 md:mt-0 md:ml-6">
+              <button
+                onClick={handleStartOver}
+                className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded font-medium"
+              >
+                Start Over
+              </button>
+            </div>
           </div>
 
+          {/* Show details below upload section after upload/manual entry */}
+          {(selectedFile || (!showManualEntry && manualSkills.length > 0)) && (
+            <>
+              {/* Main Content Grid */}
+              {/* ...existing code for analysis/results... */}
+            </>
+          )}
           {/* Manual Entry Modal */}
           {showManualEntry && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
